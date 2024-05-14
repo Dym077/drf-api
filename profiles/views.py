@@ -3,12 +3,12 @@ from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Profile
-from .serializers import ProfilSerializer
+from .serializers import ProfileSerializer
 
 class ProfileList(APIView):
     def get(self, request):
         profiles = Profile.objects.all()
-        serializer = ProfilSerializer(profiles, many=True)
+        serializer = ProfileSerializer(profiles, many=True)
         return Response(serializer.data)
 
 
@@ -35,6 +35,3 @@ class ProfileDetail(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-                
-            ) 
