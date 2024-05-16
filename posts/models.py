@@ -8,7 +8,7 @@ class Post(models.Model):
     Default image set so that we can always reference image.url.
     """
 
-    mage_filter_choices = [
+    image_filter_choices = [
     ('_1977', '1977'), ('brannan', 'Brannan'),
     ('earlybird', 'Earlybird'), ('hudson', 'Hudson'),
     ('inkwell', 'Inkwell'), ('lofi', 'Lo-Fi'),
