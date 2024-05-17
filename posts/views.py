@@ -26,7 +26,9 @@ class PostList(APIView):
         )
         if serializer.is_valid():
             serializer.save(owner=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(
+                serializer.data, status=status.HTTP_201_CREATED
+            )
 
         return Response(
             serializer.errors, status=status.HTTP_400_BAD_REQUEST
@@ -40,7 +42,7 @@ class PostDetail(APIView):
     def get_object(self, pk):
         try:
             post = Post.objects.get(pk=pk)
-            self.check_object_perrmission(self.request, post)
+            self.check_object_permissions(self.request, post)
             return post
         except Post.DoesNotExist:
             raise Http404
@@ -55,7 +57,7 @@ class PostDetail(APIView):
     def put(self, request, pk):
         post = self.get_object(pk)
         serializer = PostSerializer(
-            post, data=request.data,context={'request': request}
+            post, data=request.data, context={'request': request}
         )
         if serializer.is_valid():
             serializer.save()
