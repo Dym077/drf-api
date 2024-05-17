@@ -1,6 +1,6 @@
 from django.http import Http404
 from rest_framework import status, permissions
-from rest_framework import response
+from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Post
 from .serializers import PostSerializer
@@ -12,7 +12,7 @@ class PostList(APIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
-    def get (self, request):
+    def get(self, request):
         posts = Post.objects.all()
         serializer = PostSerializer(
             posts, many=True, context={'request': request}   
@@ -29,7 +29,8 @@ class PostList(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         return Response(
-            serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
+            serializer.errors, status=status.HTTP_400_BAD_REQUEST
+        )  
 
 class PostDetail(APIView):
     permission_classes = [IsOwnerOrReadOnly]
