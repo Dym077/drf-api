@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import re
 from pathlib import Path
 import os
 import dj_database_url
@@ -58,7 +59,14 @@ SECRET_KEY = 'django-insecure-qa=m=-@m4w4voli46gq5_@#23!7n6t2xa*lbz2!uw9%!n2i_-h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-dym077-drfapi-l3150g2g81a.ws-eu114.gitpod.io', 'drf-api-wt-e8d04bb58926.herokuapp.com']
+ALLOWED_HOSTS = ['8000-dym077-drfapi-l3150g2g81a.ws-eu114.gitpod.io', os.environ.get('ALLOWED_HOST'),
+   'localhost'],
+
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''), re.IGNORECASE).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]   
 
 
 # Application definition
