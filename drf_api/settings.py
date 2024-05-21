@@ -58,7 +58,7 @@ SECRET_KEY = 'django-insecure-qa=m=-@m4w4voli46gq5_@#23!7n6t2xa*lbz2!uw9%!n2i_-h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-dym077-drfapi-l3150g2g81a.ws-eu114.gitpod.io', 'drf-api-wt.herokuapp.com']
+ALLOWED_HOSTS = ['8000-dym077-drfapi-l3150g2g81a.ws-eu114.gitpod.io', 'drf-api-wt-e8d04bb58926.herokuapp.com']
 
 
 # Application definition
