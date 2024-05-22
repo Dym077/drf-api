@@ -30,8 +30,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [(
         'rest_framework.authentication.SessionAuthentication'
         if 'DEV' in os.environ
-        else 'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
+        else 
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication'
     )],
+
     'DEFAULT_PAGINATION_CLASS':
     'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
@@ -59,20 +61,22 @@ SECRET_KEY = 'django-insecure-qa=m=-@m4w4voli46gq5_@#23!7n6t2xa*lbz2!uw9%!n2i_-h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-dym077-drfapi-l3150g2g81a.ws-eu114.gitpod.io', os.environ.get('ALLOWED_HOST'),
+ALLOWED_HOSTS = ['*', os.environ.get('ALLOWED_HOST'),
    'localhost',
    ]
 
 if 'CLIENT_ORIGIN' in os.environ:
-    CORS_ALLOWED_ORIGINS = [
+     CORS_ALLOWED_ORIGINS = [
         os.environ.get('CLIENT_ORIGIN')
-    ]
+     ]
 else:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        r"^https://.*\.gitpod\.io$",
-    ]
+     CORS_ALLOWED_ORIGIN_REGEXES = [
+         r"^https://.*\.gitpod\.io$",
+         '*'
+     ]
 
-CORS_ALLOW_CREDENTIALS = True   
+CORS_ALLOW_CREDENTIALS = True  
+CORS_ORIGIN_ALLOW_ALL=True
 
 
 # Application definition
@@ -96,7 +100,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'dj_rest_auth.registration',
     'corsheaders',
-
     'profiles', 
     'posts',
     'comments',
@@ -107,6 +110,7 @@ SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -131,6 +135,8 @@ TEMPLATES = [
         },
     },
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
 
 WSGI_APPLICATION = 'drf_api.wsgi.application'
 
