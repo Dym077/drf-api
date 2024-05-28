@@ -59,27 +59,14 @@ REST_AUTH_SERIALIZERS = {
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qa=m=-@m4w4voli46gq5_@#23!7n6t2xa*lbz2!uw9%!n2i_-h'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['*', os.environ.get('ALLOWED_HOST'),
    'localhost',
    ]
-
-if 'CLIENT_ORIGIN' in os.environ:
-     CORS_ALLOWED_ORIGINS = [
-        os.environ.get('CLIENT_ORIGIN')
-     ]
-else:
-     CORS_ALLOWED_ORIGIN_REGEXES = [
-         r"^https://.*\.gitpod\.io$",
-         '*'
-     ]
-
-CORS_ALLOW_CREDENTIALS = True  
-CORS_ORIGIN_ALLOW_ALL=True
 
 
 # Application definition
@@ -120,6 +107,19 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+if 'CLIENT_ORIGIN' in os.environ:
+     CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+     ]
+else:
+     CORS_ALLOWED_ORIGIN_REGEXES = [
+         r"^https://.*\.gitpod\.io$",
+         '*'
+     ]
+
+CORS_ALLOW_CREDENTIALS = True  
+CORS_ORIGIN_ALLOW_ALL=True
 
 ROOT_URLCONF = 'drf_api.urls'
 
