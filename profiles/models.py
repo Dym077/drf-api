@@ -10,7 +10,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=255, blank=True)
     content = models.TextField(blank=True)
     image = models.ImageField(
-        upload_to='images/', default='../https://res.cloudinary.com/dx5y0mmme/image/upload/v1715679145/media/images/default_profile_relxos.jpg'
+        upload_to='images/', default='../https://res-console.cloudinary.com/dx5y0mmme/thumbnails/v1/image/upload/v1715679145/bWVkaWEvaW1hZ2VzL2RlZmF1bHRfcHJvZmlsZV9yZWx4b3M=/drilldown'
     )
 
     class Meta:
