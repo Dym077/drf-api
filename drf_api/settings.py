@@ -64,7 +64,8 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['*', os.environ.get('ALLOWED_HOST'),
+ALLOWED_HOSTS = [
+    os.environ.get('ALLOWED_HOST'),
    'localhost',
    ]
 
@@ -115,7 +116,6 @@ if 'CLIENT_ORIGIN' in os.environ:
 else:
      CORS_ALLOWED_ORIGIN_REGEXES = [
          r"^https://.*\.gitpod\.io$",
-         '*'
      ]
 
 CORS_ALLOW_CREDENTIALS = True  
@@ -158,7 +158,6 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
-    # print('connected')
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
