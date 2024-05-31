@@ -141,7 +141,7 @@ TEMPLATES = [
     },
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io', 'drf-api-wt-e8d04bb58926.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io',]
 
 WSGI_APPLICATION = 'drf_api.wsgi.application'
 
