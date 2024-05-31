@@ -62,11 +62,13 @@ REST_AUTH_SERIALIZERS = {
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
+# DEBUG = 'DEV' in os.environ
+DEBUG = True
 
 ALLOWED_HOSTS = [
     os.environ.get('ALLOWED_HOST'),
    'localhost',
+   '8000-dym077-drfapi-5irdrexgzy1.ws-eu114.gitpod.io',
    ]
 
 
@@ -139,7 +141,7 @@ TEMPLATES = [
     },
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io', 'drf-api-wt-e8d04bb58926.herokuapp.com']
 
 WSGI_APPLICATION = 'drf_api.wsgi.application'
 
